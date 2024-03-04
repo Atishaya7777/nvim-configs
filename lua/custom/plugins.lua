@@ -1,5 +1,8 @@
 local plugins = {
   {
+    'lervag/vimtex'
+  },
+  {
     'numToStr/Comment.nvim',
     config = function()
         require('Comment').setup()
