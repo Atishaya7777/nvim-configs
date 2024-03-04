@@ -56,6 +56,17 @@ for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
   vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
+local enable_providers = {
+      "python3_provider",
+      "node_provider",
+      -- and so on
+    }
+    
+    for _, plugin in pairs(enable_providers) do
+      vim.g["loaded_" .. plugin] = nil
+      vim.cmd("runtime " .. plugin)
+    end
+
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
