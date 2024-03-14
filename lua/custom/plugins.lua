@@ -1,19 +1,26 @@
 local plugins = {
   {
+    'MunifTanjim/prettier.nvim',
+    config = require "custom.configs.prettier"
+  },
+  { 'windwp/nvim-autopairs' },
+  { 'windwp/nvim-ts-autotag' },
+  {
     'lervag/vimtex'
   },
   {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
-        vim.keymap.set("n", "<C-_>", function() require('Comment.api').toggle.linewise.current() end, { noremap = true, silent = true })
+      require('Comment').setup()
+      vim.keymap.set("n", "<C-_>", function() require('Comment.api').toggle.linewise.current() end,
+        { noremap = true, silent = true })
     end
   },
   {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
     dependicies = "mfussenegger/nvim-dap",
-    config = function ()
+    config = function()
       local dap = require("dap")
       local dapui = require("dapui")
       dapui.setup()
@@ -41,7 +48,7 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
-    config = function (_, _)
+    config = function(_, _)
       require("core.utils").load_mappings("dap")
     end
   },
@@ -54,7 +61,7 @@ local plugins = {
   },
   {
     "neovim/nvim-lspconfig",
-    config = function ()
+    config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end

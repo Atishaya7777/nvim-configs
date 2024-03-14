@@ -3,7 +3,12 @@ local null_ls = require("null-ls")
 
 local opts = {
   sources = {
+    null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.clang_format,
+    null_ls.builtins.diagnostics.eslint_d.with({
+      diagnostics_format = '[eslint] #{m}\n(#{c})'
+    }),
+    null_ls.builtins.diagnostics.fish
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -15,11 +20,11 @@ local opts = {
         group = augroup,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.format({bufnr = bufnr})
+          vim.lsp.buf.format({ bufnr = bufnr })
         end
       })
-      end
     end
+  end
 }
 
 return opts
