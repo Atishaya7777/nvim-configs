@@ -1,5 +1,9 @@
 local plugins = {
   {
+    "github/copilot.vim",
+    event = "VeryLazy"
+  },
+  {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
     opts = function()
