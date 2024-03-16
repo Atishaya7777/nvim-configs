@@ -10,8 +10,17 @@ lspconfig.clangd.setup {
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
-  cmd ={
+  cmd = {
     "clangd",
     "--offset-encoding=utf-16",
   }
 }
+
+local servers = { "tsserver", "eslint", "cssls" }
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end

@@ -57,15 +57,15 @@ for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
 end
 
 local enable_providers = {
-      "python3_provider",
-      "node_provider",
-      -- and so on
-    }
-    
-    for _, plugin in pairs(enable_providers) do
-      vim.g["loaded_" .. plugin] = nil
-      vim.cmd("runtime " .. plugin)
-    end
+  "python3_provider",
+  "node_provider",
+  -- and so on
+}
+
+for _, plugin in pairs(enable_providers) do
+  vim.g["loaded_" .. plugin] = nil
+  vim.cmd("runtime " .. plugin)
+end
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
@@ -145,5 +145,5 @@ vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 local new_cmd = vim.api.nvim_create_user_command
 
 new_cmd("NvChadUpdate", function()
-  require "nvchad.updater"()
+  require "nvchad.updater" ()
 end, {})

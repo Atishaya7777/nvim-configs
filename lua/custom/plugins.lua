@@ -1,10 +1,46 @@
 local plugins = {
   {
+    "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "custom.configs.null-ls"
+    end
+  },
+  {
     'MunifTanjim/prettier.nvim',
     config = require "custom.configs.prettier"
   },
   { 'windwp/nvim-autopairs' },
-  { 'windwp/nvim-ts-autotag' },
+  {
+    'windwp/nvim-ts-autotag',
+    ft = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "html"
+    },
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function()
+      opts = require "plugins.configs.treesitter"
+      opts.ensure_installed = {
+        "lua",
+        "javascript",
+        "typescript",
+        "tsx",
+        "c",
+        "cpp",
+        "css",
+      }
+
+      return opts
+    end
+  },
   {
     'lervag/vimtex'
   },
@@ -72,9 +108,16 @@ local plugins = {
       ensure_installed = {
         "clangd",
         "clang-format",
-        "codelldb"
+        "codelldb",
+        "prettierd",
+        "eslint-lsp",
+        "typescript-language-server",
       }
     }
+  },
+  -- For OneDark theming --
+  {
+    'navarasu/onedark.nvim'
   }
 }
 
