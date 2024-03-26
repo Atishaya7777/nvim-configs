@@ -1,5 +1,9 @@
 local plugins = {
   {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "VeryLazy"
+  },
+  {
     "github/copilot.vim",
     event = "VeryLazy"
   },
