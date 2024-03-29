@@ -14,4 +14,6 @@ M.dap = {
   }
 }
 
+vim.wo.relativenumber = true
+
 return M
