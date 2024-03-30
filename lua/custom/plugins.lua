@@ -1,42 +1,54 @@
 local plugins = {
   {
+    "evesdropper/luasnip-latex-snippets.nvim",
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+    config = function()
+      return require "custom.configs.luasnip"
+    end,
+  },
+  {
     "lervag/vimtex",
-    init = function()
-      -- Use init for configuration, don't use the more common "config".
-    end
+    event = "VeryLazy",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
   {
     "github/copilot.vim",
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
   {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
     opts = function()
-      return require "custom.configs.null-ls"
-    end
+      local tempOpts = require "custom.configs.null-ls"
+      return tempOpts
+    end,
   },
   {
-    'MunifTanjim/prettier.nvim',
-    config = require "custom.configs.prettier"
+    "MunifTanjim/prettier.nvim",
+    config = require "custom.configs.prettier",
   },
-  { 'windwp/nvim-autopairs' },
+  { "windwp/nvim-autopairs" },
   {
-    'windwp/nvim-ts-autotag',
+    "windwp/nvim-ts-autotag",
     ft = {
       "javascript",
       "javascriptreact",
       "typescript",
       "typescriptreact",
-      "html"
+      "html",
     },
     config = function()
       require("nvim-ts-autotag").setup()
-    end
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -53,26 +65,27 @@ local plugins = {
       }
 
       return opts
-    end
+    end,
   },
   {
-    'lervag/vimtex'
+    "lervag/vimtex",
   },
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     config = function()
-      require('Comment').setup()
-      vim.keymap.set("n", "<C-_>", function() require('Comment.api').toggle.linewise.current() end,
-        { noremap = true, silent = true })
-    end
+      require("Comment").setup()
+      vim.keymap.set("n", "<C-_>", function()
+        require("Comment.api").toggle.linewise.current()
+      end, { noremap = true, silent = true })
+    end,
   },
   {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
     dependicies = "mfussenegger/nvim-dap",
     config = function()
-      local dap = require("dap")
-      local dapui = require("dapui")
+      local dap = require "dap"
+      local dapui = require "dapui"
       dapui.setup()
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
@@ -83,7 +96,7 @@ local plugins = {
       dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
       end
-    end
+    end,
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -93,28 +106,28 @@ local plugins = {
       "mfussenegger/nvim-dap",
     },
     opts = {
-      handlers = {}
-    }
+      handlers = {},
+    },
   },
   {
     "mfussenegger/nvim-dap",
     config = function(_, _)
-      require("core.utils").load_mappings("dap")
-    end
+      require("core.utils").load_mappings "dap"
+    end,
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
     event = "VeryLazy",
     opts = function()
       return require "custom.configs.null-ls"
-    end
+    end,
   },
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-    end
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -126,13 +139,13 @@ local plugins = {
         "prettierd",
         "eslint-lsp",
         "typescript-language-server",
-      }
-    }
+      },
+    },
   },
   -- For OneDark theming --
   {
-    'navarasu/onedark.nvim'
-  }
+    "navarasu/onedark.nvim",
+  },
 }
 
 return plugins
