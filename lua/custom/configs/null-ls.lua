@@ -35,47 +35,19 @@ local stylua_formatting = {
   end,
 }
 
+
 local opts = {
   sources = {
-    null_ls.builtins.formatting.eslint_d.with(eslint_formatting),
+    require("none-ls.diagnostics.eslint_d"),
     null_ls.builtins.formatting.stylua.with(stylua_formatting),
     null_ls.builtins.formatting.clang_format.with {
       filetypes = { "c", "cpp", "objc", "objcpp" },
     },
     null_ls.builtins.formatting.prettierd.with {
-      -- use prettier only with prettierrc present
-      condition = function()
-        return require("null-ls.utils").root_pattern(
-          ".prettierrc",
-          ".prettierrc.json",
-          ".prettierrc.yml",
-          ".prettierrc.yaml",
-          ".prettierrc.json5",
-          ".prettierrc.js",
-          ".prettierrc.cjs",
-          ".prettierrc.toml",
-          "prettier.config.js",
-          "prettier.config.cjs"
-        )(vim.api.nvim_buf_get_name(0)) ~= nil
-      end,
+      filetypes = { "javascript", "typescript", "vue", "html", "css", "json" },
     },
-    null_ls.builtins.diagnostics.eslint_d.with {
-      filetypes = { "javascript", "typescript", "vue", "html", "css" },
-      condition = function()
-        return null_ls.utils.root_pattern(
-          "eslint.config.js",
-          -- https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
-          ".eslintrc",
-          ".eslintrc.js",
-          ".eslintrc.cjs",
-          ".eslintrc.yaml",
-          ".eslintrc.yml",
-          ".eslintrc.json",
-          "package.json"
-        )(vim.api.nvim_buf_get_name(0)) ~= nil
-      end,
-    },
-    null_ls.builtins.code_actions.eslint_d.with(eslint_diagnostics),
+    -- null_ls.builtins.diagnostics.eslint_d,
+    -- null_ls.builtins.code_actions.eslint_d.with(eslint_diagnostics),
   },
 
   on_attach = function(client, bufnr)

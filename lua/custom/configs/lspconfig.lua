@@ -16,7 +16,7 @@ lspconfig.clangd.setup {
   }
 }
 
-local servers = { "tsserver", "eslint", "cssls" }
+local servers = { "tsserver", "cssls" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {

@@ -26,6 +26,9 @@ local plugins = {
   },
   {
     "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     event = "VeryLazy",
     opts = function()
       local tempOpts = require "custom.configs.null-ls"
