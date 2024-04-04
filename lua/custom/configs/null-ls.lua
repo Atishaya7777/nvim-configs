@@ -39,14 +39,21 @@ local stylua_formatting = {
 local opts = {
   sources = {
     require("none-ls.diagnostics.eslint_d"),
+    -- require("none-ls.formatting.eslint_d"),
     null_ls.builtins.formatting.stylua.with(stylua_formatting),
     null_ls.builtins.formatting.clang_format.with {
       filetypes = { "c", "cpp", "objc", "objcpp" },
     },
-    null_ls.builtins.formatting.prettierd.with {
-      filetypes = { "javascript", "typescript", "vue", "html", "css", "json" },
-    },
-    -- null_ls.builtins.diagnostics.eslint_d,
+    -- null_ls.builtins.formatting.prettierd.with {
+    --   filetype = { "javascript", "typescript", "vue", "html", "css", "json", "typescriptreact", "javascriptreact" },
+    -- },
+    -- -- null_ls.builtins.formatting.eslint_d.with {
+    --   filetype = { "javascript", "typescript", "vue", "html", "css", "json" },
+    -- },
+    -- null_ls.builtins.formatting.prettierd.with {
+    --   filetypes = { "javascript", "typescript", "vue", "html", "css", "json" },
+    -- },
+    -- -- null_ls.builtins.diagnostics.eslint_d,
     -- null_ls.builtins.code_actions.eslint_d.with(eslint_diagnostics),
   },
 
